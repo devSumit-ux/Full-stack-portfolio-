@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sumit Kumar | Full Stack Web Developer Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <style>
+    /* Background Gradient & Dark Mode */
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      color: #e0e7ff; /* Light periwinkle text */
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Animated subtle stripes overlay */
+    .bg-stripes {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          rgba(147, 197, 253, 0.06) 0,
+          rgba(147, 197, 253, 0.06) 3px,
+          transparent 3px,
+          transparent 15px
+        );
+      animation: stripesMove 30s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle grid lines */
+    .bg-grid {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image:
+        linear-gradient(rgba(147, 197, 253, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(147, 197, 253, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glowing shapes */
+    .glow-shape {
+      
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.35;
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow1 {
+      width: 320px;
+      height: 320px;
+      background: #6366f1; /* Indigo */
+      top: 15%;
+      left: 12%;
+      animation-delay: 0s;
+      mix-blend-mode: screen;
+    }
+    .glow2 {
+      width: 280px;
+      height: 280px;
+      background: #8b5cf6; /* Violet */
+      top: 72%;
+      left: 75%;
+      animation-delay: 3s;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes stripesMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.65; transform: scale(1.1); }
+    }
+
+    /* Glass effect card */
+    .glass {
+      background: rgba(99, 102, 241, 0.15); /* Indigo translucent */
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(147, 197, 253, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(147, 197, 253, 0.15);
+      border-radius: 1rem;
+      color: #c7d2fe; /* lighter text */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      z-index: 10;
+    }
+    .glass:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 40px 0 rgba(147, 197, 253, 0.4);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      height: 14px;
+      border-radius: 7px;
+      background-color: #4338ca; /* Darker indigo */
+      overflow: hidden;
+      margin-top: 6px;
+      box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.3);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #a78bfa, #7c3aed);
+      transition: width 1s ease-in-out;
+      box-shadow: 0 0 10px #8b5cf6aa;
+    }
+
+    /* Highlighted note styling */
+    .note-highlight {
+      background: rgba(139, 92, 246, 0.15); /* violet transparent */
+      border-left: 5px solid #8b5cf6; /* violet solid */
+      color: #ddd6fe;
+      padding: 18px 22px;
+      border-radius: 10px;
+      font-style: italic;
+      margin-top: 28px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      user-select: text;
+      box-shadow: 0 2px 12px rgba(139, 92, 246, 0.2);
+      font-size: 1.1rem;
+      line-height: 1.5;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Headings */
+    h1, h2, h3 {
+      color: #a5b4fc; /* lighter indigo */
+      text-shadow: 0 0 6px #7c3aedaa;
+      position: relative;
+      z-index: 10;
+    }
+
+    a {
+      color: #a78bfa;
+      transition: color 0.3s ease;
+      position: relative;
+      z-index: 10;
+    }
+    a:hover, a:focus {
+      color: #c4b5fd;
+      text-decoration: underline;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: #7c3aed;
+      color: white;
+      padding: 0.75rem 1.8rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      box-shadow: 0 0 15px #8b5cf6cc;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      user-select: none;
+      position: relative;
+      z-index: 10;
+    }
+    .btn-primary:hover {
+      background: #a78bfa;
+      box-shadow: 0 0 25px #a78bfaaa;
+    }
+
+    /* Responsive Grid */
+    @media (min-width: 768px) {
+      .grid-cols-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    /* Coding vibe background container */
+    #code-vibe {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      font-family: 'Source Code Pro', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      color: rgba(167, 139, 250, 0.15);
+      user-select: none;
+    }
+
+    /* Code lines style */
+    .code-line {
+      position: absolute;
+      white-space: nowrap;
+      animation-name: floatUp;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.2;
+      }
+      90% {
+        opacity: 0.2;
+      }
+      100% {
+        transform: translateY(-20vh) translateX(50px) rotate(15deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Effects -->
+  <div class="bg-stripes"></div>
+  <div class="bg-grid"></div>
+  <div class="glow-shape glow1"></div>
+  <div class="glow-shape glow2"></div>
+
+  <!-- Coding vibe animated lines -->
+  <div id="code-vibe"></div>
+
+  <script>
+    AOS.init({
+      duration: 1300,
+      once: true,
+      easing: 'ease-in-out',
+    });
+
+    // Coding vibe lines content
+    const codeLines = [
+      "const greet = () => console.log('Hello World!');",
+      "function fetchData(url) { return fetch(url).then(res => res.json()); }",
+      "const sum = (a, b) => a + b;",
+      "let isLoading = false;",
+      "class Developer { constructor(name) { this.name = name; } }",
+      "const skills = ['React', 'Node.js', 'MongoDB'];",
+      "if(user.isLoggedIn) { showDashboard(); }",
+      "console.log('Portfolio loading...');",
+      "return (<Component />);",
+      "let timer = setTimeout(() => alert('Hi!'), 3000);"
+    ];
+
+    const codeContainer = document.getElementById('code-vibe');
+
+    // Create multiple floating code lines at random positions and delays
+    for(let i = 0; i < 30; i++) {
+      const line = document.createElement('div');
+      line.classList.add('code-line');
+      line.textContent = codeLines[Math.floor(Math.random() * codeLines.length)];
+      // random horizontal start position
+      line.style.left = Math.random() * 100 + 'vw';
+      // random animation duration between 15s and 40s
+      line.style.animationDuration = (15 + Math.random() * 25) + 's';
+      // random animation delay so lines start at different times
+      line.style.animationDelay = (Math.random() * 40) + 's';
+      // random font size for depth effect
+      line.style.fontSize = (10 + Math.random() * 10) + 'px';
+      // random rotation for vibe
+      line.style.transform = `rotate(${(Math.random() - 0.5) * 30}deg)`;
+      codeContainer.appendChild(line);
+    }
+  </script>
+
+  <!-- Header -->
+  <header class="text-center py-16 relative z-10" data-aos="fade-down">
+    <h1 class="text-6xl font-extrabold mb-4 drop-shadow-lg">Sumit Kumar</h1>
+    <p class="text-xl max-w-xl mx-auto mb-2">Full Stack Web Developer</p>
+    <p class="text-indigo-300 max-w-lg mx-auto mb-6 italic">This is my first project I ever made. I have 4 months of experience in web development. I am passionate, dedicated, and eager to take on new challenges and deliver quality work. Please consider giving me an opportunity to work on your project!</p>
+    <a href="https://guru.com" target="_blank" class="btn-primary">Visit My Freelance Profile</a>
+  </header>
+
+  <!-- Skills Section -->
+  <section class="max-w-4xl mx-auto px-6 py-12 relative z-10" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-10 text-center">My Skills</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-xl mx-auto">
+      <div>
+        <h3 class="text-2xl font-semibold mb-3">HTML</h3>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: 70%;"></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-3">CSS</h3>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: 72%;"></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-3">JavaScript</h3>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: 68%;"></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-3">React</h3>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: 65%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="max-w-5xl mx-auto px-6 py-16 relative z-10" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-10 text-center">My Projects</h2>
+    <div class="glass p-8 max-w-3xl mx-auto">
+      <h3 class="text-3xl font-semibold mb-4">Freelance Portfolio Website</h3>
+      <p class="mb-6 text-indigo-300">
+        This is the very first project I created to showcase my skills and introduce myself as a web developer. I built this portfolio website with a modern, clean design using Tailwind CSS and added smooth animations with AOS library. The website includes sections for my skills, projects, testimonials, and contact information.
+      </p>
+      <p class="mb-6 text-indigo-300">
+        I implemented interactive progress bars to visually represent my skill levels (65%-75%), designed responsive layouts that look great on all devices, and added a glowing background effect to give the site a futuristic, coding vibe. The testimonials section includes a demo testimonial to show how client feedback might appear.
+      </p>
+      <p class="note-highlight">
+        Note: This portfolio is my first project. I have four months of experience but I am eager to learn and deliver quality work. Please consider me for your projects—I am dedicated and committed to meeting your expectations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="max-w-4xl mx-auto px-6 py-16 relative z-10" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-10 text-center">Testimonials</h2>
+    <div class="glass p-8 rounded-xl shadow-lg max-w-xl mx-auto">
+      <p class="italic text-indigo-300 text-center mb-6">
+        "Sumit delivered my website ahead of schedule and was very responsive to changes. Highly recommend for anyone looking to hire a dedicated developer!"
+      </p>
+      <p class="italic text-indigo-300 text-center">
+        - Client Demo (This testimonial is a demo, not real)
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="max-w-4xl mx-auto px-6 py-16 relative z-10 text-center" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-6">Get In Touch</h2>
+    <p class="mb-6 text-indigo-300 max-w-lg mx-auto">Feel free to reach out for freelance projects, collaboration, or just to say hello.</p>
+    <a href="mailto:sumit.kumar@example.com" class="btn-primary">Email Me</a>
+  </section>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sumit Kumar | Full Stack Web Developer Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <style>
+    /* Background Gradient & Dark Mode */
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      color: #e0e7ff; /* Light periwinkle text */
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Animated subtle stripes overlay */
+    .bg-stripes {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          rgba(147, 197, 253, 0.06) 0,
+          rgba(147, 197, 253, 0.06) 3px,
+          transparent 3px,
+          transparent 15px
+        );
+      animation: stripesMove 30s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle grid lines */
+    .bg-grid {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image:
+        linear-gradient(rgba(147, 197, 253, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(147, 197, 253, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glowing shapes */
+    .glow-shape {
+      
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.35;
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow1 {
+      width: 320px;
+      height: 320px;
+      background: #6366f1; /* Indigo */
+      top: 15%;
+      left: 12%;
+      animation-delay: 0s;
+      mix-blend-mode: screen;
+    }
+    .glow2 {
+      width: 280px;
+      height: 280px;
+      background: #8b5cf6; /* Violet */
+      top: 72%;
+      left: 75%;
+      animation-delay: 3s;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes stripesMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.65; transform: scale(1.1); }
+    }
+
+    /* Glass effect card */
+    .glass {
+      background: rgba(99, 102, 241, 0.15); /* Indigo translucent */
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(147, 197, 253, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(147, 197, 253, 0.15);
+      border-radius: 1rem;
+      color: #c7d2fe; /* lighter text */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      z-index: 10;
+    }
+    .glass:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 40px 0 rgba(147, 197, 253, 0.4);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      height: 14px;
+      border-radius: 7px;
+      background-color: #4338ca; /* Darker indigo */
+      overflow: hidden;
+      margin-top: 6px;
+      box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.3);
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #a78bfa, #7c3aed);
+      transition: width 1s ease-in-out;
+      box-shadow: 0 0 10px #8b5cf6aa;
+    }
+
+    /* Highlighted note styling */
+    .note-highlight {
+      background: rgba(139, 92, 246, 0.15); /* violet transparent */
+      border-left: 5px solid #8b5cf6; /* violet solid */
+      color: #ddd6fe;
+      padding: 18px 22px;
+      border-radius: 10px;
+      font-style: italic;
+      margin-top: 28px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      user-select: text;
+      box-shadow: 0 2px 12px rgba(139, 92, 246, 0.2);
+      font-size: 1.1rem;
+      line-height: 1.5;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Headings */
+    h1, h2, h3 {
+      color: #a5b4fc; /* lighter indigo */
+      text-shadow: 0 0 6px #7c3aedaa;
+      position: relative;
+      z-index: 10;
+    }
+
+    a {
+      color: #a78bfa;
+      transition: color 0.3s ease;
+      position: relative;
+      z-index: 10;
+    }
+    a:hover, a:focus {
+      color: #c4b5fd;
+      text-decoration: underline;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: #7c3aed;
+      color: white;
+      padding: 0.75rem 1.8rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      box-shadow: 0 0 15px #8b5cf6cc;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      user-select: none;
+      position: relative;
+      z-index: 10;
+    }
+    .btn-primary:hover {
+      background: #a78bfa;
+      box-shadow: 0 0 25px #a78bfaaa;
+    }
+
+    /* Responsive Grid */
+    @media (min-width: 768px) {
+      .grid-cols-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    /* Coding vibe background container */
+    #code-vibe {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      font-family: 'Source Code Pro', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      color: rgba(167, 139, 250, 0.15);
+      user-select: none;
+    }
+
+    /* Code lines style */
+    .code-line {
+      position: absolute;
+      white-space: nowrap;
+      animation-name: floatUp;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.2;
+      }
+      90% {
+        opacity: 0.2;
+      }
+      100% {
+        transform: translateY(-20vh) translateX(50px) rotate(15deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Effects -->
+  <div class="bg-stripes"></div>
+  <div class="bg-grid"></div>
+  <div class="glow-shape glow1"></div>
+  <div class="glow-shape glow2"></div>
+
+  <!-- Coding vibe animated lines -->
+  <div id="code-vibe"></div>
+
+  <script>
+    AOS.init({
+      duration: 1300,
+      once: true,
+      easing: 'ease-in-out',
+    });
+
+    // Coding vibe lines content
+    const codeLines = [
+      "const greet = () => console.log('Hello World!');",
+      "function fetchData(url) { return fetch(url).then(res => res.json()); }",
+      "const sum = (a, b) => a + b;",
+      "let isLoading = false;",
+      "class Developer { constructor(name) { this.name = name; } }",
+      "const skills = ['React', 'Node.js', 'MongoDB'];",
+      "if(user.isLoggedIn) { showDashboard(); }",
+      "console.log('Portfolio loading...');",
+      "return (<Component />);",
+      "let timer = setTimeout(() => alert('Hi!'), 3000);"
+    ];
+
+    const codeContainer = document.getElementById('code-vibe');
+
+    // Create multiple floating code lines at random positions and delays
+    for(let i = 0; i < 30; i++) {
+      const line = document.createElement('div');
+      line.classList.add('code-line');
+      line.textContent = codeLines[Math.floor(Math.random() * codeLines.length)];
+      // random horizontal start position
+      line.style.left = Math.random() * 100 + 'vw';
+      // random animation duration between 15s and 40s
+      line.style.animationDuration = (15 + Math.random() * 25) + 's';
+      // random animation delay so lines start at different times
+      line.style.animationDelay = (Math.random() * 40) + 's';
+      // random font size for depth effect
+      line.style.fontSize = (10 + Math.random() * 10) + 'px';
+      // random rotation for vibe
+      line.style.transform = `rotate(${(Math.random() - 0.5) * 30}deg)`;
+      codeContainer.appendChild(line);
+    }
+  </script>
+
+  <!-- Header -->
+  <header class="text-center py-16 relative z-10" data-aos="fade-down">
+    <h1 class="text-6xl font-extrabold mb-4 drop-shadow-lg">Sumit Kumar</h1>
+    <p class="text-xl max-w-xl mx-auto mb-2">Full Stack Web Developer</p>
+    <p class="text-indigo-300 max-w-lg mx-auto mb-6 italic">This is my first project I ever made. I have 4 months of experience in web development. I am passionate, dedicated, and eager to take on new challenges and deliver quality work. Please consider giving me an opportunity to work on your project!</p>
+    <a href="https://guru.com" target="_blank" class="btn-primary">Visit My Freelance Profile</a>
+  </header>
+
+  <!-- Skills Section -->
+  <section class="max-w-4xl mx-auto px-6 py-12 relative z-10" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-10 text-center">My Skills</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-xl mx-auto">
+      <div>
+        <h3 class="text-2xl font-semibold mb-3">HTML</h3>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: 70%;"></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-3">CSS</h3>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: 72%;"></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-3">JavaScript</h3>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: 68%;"></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-3">React</h3>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" style="width: 65%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="max-w-5xl mx-auto px-6 py-16 relative z-10" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-10 text-center">My Projects</h2>
+    <div class="glass p-8 max-w-3xl mx-auto">
+      <h3 class="text-3xl font-semibold mb-4">Freelance Portfolio Website</h3>
+      <p class="mb-6 text-indigo-300">
+        This is the very first project I created to showcase my skills and introduce myself as a web developer. I built this portfolio website with a modern, clean design using Tailwind CSS and added smooth animations with AOS library. The website includes sections for my skills, projects, testimonials, and contact information.
+      </p>
+      <p class="mb-6 text-indigo-300">
+        I implemented interactive progress bars to visually represent my skill levels (65%-75%), designed responsive layouts that look great on all devices, and added a glowing background effect to give the site a futuristic, coding vibe. The testimonials section includes a demo testimonial to show how client feedback might appear.
+      </p>
+      <p class="note-highlight">
+        Note: This portfolio is my first project. I have four months of experience but I am eager to learn and deliver quality work. Please consider me for your projects—I am dedicated and committed to meeting your expectations.
+      </p>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="max-w-4xl mx-auto px-6 py-16 relative z-10" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-10 text-center">Testimonials</h2>
+    <div class="glass p-8 rounded-xl shadow-lg max-w-xl mx-auto">
+      <p class="italic text-indigo-300 text-center mb-6">
+        "Sumit delivered my website ahead of schedule and was very responsive to changes. Highly recommend for anyone looking to hire a dedicated developer!"
+      </p>
+      <p class="italic text-indigo-300 text-center">
+        - Client Demo (This testimonial is a demo, not real)
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="max-w-4xl mx-auto px-6 py-16 relative z-10 text-center" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-6">Get In Touch</h2>
+    <p class="mb-6 text-indigo-300 max-w-lg mx-auto">Feel free to reach out for freelance projects, collaboration, or just to say hello.</p>
+    <a href="mailto:sumit.kumar@example.com" class="btn-primary">Email Me</a>
+  </section>
+</body>
+</html>
+
